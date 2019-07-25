@@ -4,3 +4,20 @@
 html {
     font-family: sans-serif;
 }
+.add_event {
+    font-size: 50px;
+    color : yellowgreen;
+    padding : 20px;
+    border : 1px solid transparent;
+    background: #fff;
+    box-shadow: 0 11px 43px 0 rgba(0, 0, 0, 0.425);
+    width: 70px;
+    border-radius: 50%;
+    position: fixed;
+    top: 80%;
+    right: 2%;
+    z-index : 10;
+}
+.add_event:hover {
+    color: yellowgreen
+}
