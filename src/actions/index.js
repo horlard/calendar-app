@@ -1,6 +1,8 @@
-export const CreateEvent = formValues => {
+
+export const eventCreate = formValues => {
     return {
-        type : 'CREATE_EVENT',
+        type : 'EVENT_CREATE',
         payload : formValues
     }
+    
 }
