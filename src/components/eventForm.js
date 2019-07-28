@@ -48,10 +48,10 @@ import History from './history';
             console.log(this.props.createEvent)
             return (
                 <div>
-                    <form className='ui form error' onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
+                    <form className='ui form error' onSubmit={this.props.handleSubmit(this.onFormSubmit)} style={{marginTop:'50px'}}>
                         <Field name='title' component={this.renderInput} label='Enter a title'/>
                         <Field name='date' component={this.renderDate} label='Pick a date'/>
-                        <button className='ui primary button'>Set event</button>
+                        <button className='ui primary button' style={{marginTop:'20px'}}>Set event</button>
                     </form>
                 </div>
             )
