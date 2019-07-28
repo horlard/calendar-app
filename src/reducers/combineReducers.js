@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 import {reducer as form } from 'redux-form';
 
-import CreateEvent from './createEvent';
+import CreateEvent from './createEventReducer';
 
 export default combineReducers({
     CreateEvent,
-    form
+    form 
 })
