@@ -1,74 +1,78 @@
 import React from 'react'
 import {Field,reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
+import {eventCreate} from '../actions';
+import History from './history';
 
  class eventForm extends React.Component {
 
-    onFormSubmit = (formValues) => {
-        this.props.onFormSubmit(formValues)
+    onFormSubmit=(formValues)=>{
+        this.props.eventCreate(formValues);
+        History.push('/');
     }
-    renderErr=(meta)=> {
-        if (meta.error && meta.touched) {
+
+    renderErr = meta => {
+        if(meta.error && meta.touched) {
             return (
                 <div className='ui error message'>
                     <div className='header'>{meta.error}</div>
                 </div>
             )
-
+            
         }
+    }
 
-    }
-    dateInput=(Input)=> {
-        console.log(Input.meta)
-        return(
-            <div>
-                <label>{Input.label}</label>
-                <input onChange={Input.onChange} value={Input.value} type='date'/>
-                <div>{this.renderErr(Input.meta)}</div>
-            </div> 
-        )
-        
-    }
-    titleInput = (Input)=> {
-        console.log(Input);
+    renderInput= Input => {
         return (
             <div>
                 <label>{Input.label}</label>
-                <input onChange={Input.onChange} value={Input.value} />
+                <input onChange={Input.input.onChange} value={Input.input.value}/>
                 <div>{this.renderErr(Input.meta)}</div>
-
             </div>
-        )
 
+        )
     }
 
 
-    render() {
+    renderDate= Input => {
         return (
             <div>
-                <form className='ui form error' style={{marginTop: '40px'}} onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
-                    <Field name='title' component={this.titleInput} label='Enter a title'/>
-                    <Field name='date' component={this.dateInput} label='Pick a date'/>
-                    <button className='ui button primary' style={{marginTop: '20px'}}>Set Event</button>
-                </form>
-                
+                <label>{Input.label}</label>
+                <input onChange={Input.input.onChange} value={Input.input.value} type='date'/>
+                <div>{this.renderErr(Input.meta)}</div>
             </div>
         )
     }
+
+        render(){
+            console.log(this.props.createEvent)
+            return (
+                <div>
+                    <form className='ui form error' onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
+                        <Field name='title' component={this.renderInput} label='Enter a title'/>
+                        <Field name='date' component={this.renderDate} label='Pick a date'/>
+                        <button className='ui primary button'>Set event</button>
+                    </form>
+                </div>
+            )
+                }
+}
+const mapStateToProps=state=> {
+    return {createEvent:state.CreateEvent}
 }
 
-const Validation =formValues => {
-    const errors={}
-    if (!formValues.title) {
+const Validation = formValues => {
+    const errors = {}
+    if(!formValues.title) {
         errors.title='Enter a title'
     }
-    if (!formValues.date) {
-        errors.date ='Pick a date'
-    } 
+    if(!formValues.date) {
+        errors.date='Pick a date'
+    }
     return errors;
-
 }
 
-export default reduxForm({
-    form : 'EventForm',
+export default connect(mapStateToProps,{eventCreate})(reduxForm({
+    form : 'createEvent',
     validate : Validation
-})(eventForm);
+})(eventForm))
