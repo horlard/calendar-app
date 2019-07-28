@@ -1,8 +1,9 @@
 import React from 'react';
-import {BrowserRouter as Router,Route} from 'react-router-dom';
+import {Router,Route} from 'react-router-dom';
 
 import CreateEvent from './eventForm';
 import EventCalender from './eventCalender';
+import History from './history';
 
 
 class App extends React.Component {
@@ -13,7 +14,7 @@ class App extends React.Component {
         return (
             <div>
 
-                <Router>
+                <Router history={History}>
                     <div className='ui container'>
                         <Route path='/' exact component={EventCalender}/>
                         <Route path='/createEvent' exact component={CreateEvent}/>
