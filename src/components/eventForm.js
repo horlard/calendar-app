@@ -2,13 +2,11 @@ import React from 'react'
 import {Field,reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {eventCreate} from '../actions';
-import History from './history';
 
  class eventForm extends React.Component {
 
     onFormSubmit=(formValues)=>{
         this.props.eventCreate(formValues);
-        History.push('/');
     }
 
     renderErr = meta => {
