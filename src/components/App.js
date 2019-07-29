@@ -15,7 +15,7 @@ class App extends React.Component {
             <div>
 
                 <Router history={History}>
-                    <div className='ui container'>
+                    <div className='ui container' style={{marginTop:'20px'}}>
                         <Route path='/' exact component={EventCalender}/>
                         <Route path='/createEvent' exact component={CreateEvent}/>
                     </div>
